@@ -93,6 +93,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       problems: {
         Row: {
@@ -152,6 +153,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       problem_attempts: {
         Row: {
@@ -199,6 +201,7 @@ export interface Database {
           attempted_at?: string;
           created_at?: string;
         };
+        Relationships: [];
       };
       mistakes: {
         Row: {
@@ -246,6 +249,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       attempt_mistakes: {
         Row: {
@@ -269,6 +273,7 @@ export interface Database {
           specific_notes?: string | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       problem_mistakes: {
         Row: {
@@ -289,6 +294,7 @@ export interface Database {
           user_id?: string;
           created_at?: string;
         };
+        Relationships: [];
       };
       patterns: {
         Row: {
@@ -333,6 +339,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       problem_patterns: {
         Row: {
@@ -356,6 +363,7 @@ export interface Database {
           notes?: string | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       concepts: {
         Row: {
@@ -400,6 +408,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       problem_concepts: {
         Row: {
@@ -420,6 +429,7 @@ export interface Database {
           user_id?: string;
           created_at?: string;
         };
+        Relationships: [];
       };
       tags: {
         Row: {
@@ -443,6 +453,7 @@ export interface Database {
           color?: string;
           created_at?: string;
         };
+        Relationships: [];
       };
       problem_tags: {
         Row: {
@@ -460,6 +471,7 @@ export interface Database {
           tag_id?: string;
           user_id?: string;
         };
+        Relationships: [];
       };
       mistake_tags: {
         Row: {
@@ -477,6 +489,7 @@ export interface Database {
           tag_id?: string;
           user_id?: string;
         };
+        Relationships: [];
       };
       pattern_tags: {
         Row: {
@@ -494,6 +507,7 @@ export interface Database {
           tag_id?: string;
           user_id?: string;
         };
+        Relationships: [];
       };
       concept_tags: {
         Row: {
@@ -511,6 +525,7 @@ export interface Database {
           tag_id?: string;
           user_id?: string;
         };
+        Relationships: [];
       };
       revision_items: {
         Row: {
@@ -561,6 +576,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       revision_logs: {
         Row: {
@@ -590,6 +606,7 @@ export interface Database {
           notes?: string | null;
           reviewed_at?: string;
         };
+        Relationships: [];
       };
       extension_inbox: {
         Row: {
@@ -634,6 +651,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
     };
     Views: {
@@ -646,6 +664,7 @@ export interface Database {
           critical_high_count: number;
           most_recent_occurrence: string | null;
         };
+        Relationships: [];
       };
       v_daily_revision_queue: {
         Row: {
@@ -659,6 +678,7 @@ export interface Database {
           item_title: string | null;
           item_subtitle: string | null;
         };
+        Relationships: [];
       };
       v_user_problem_stats: {
         Row: {
@@ -670,6 +690,7 @@ export interface Database {
           starred_count: number;
           total_time_spent_minutes: number;
         };
+        Relationships: [];
       };
     };
     Functions: {

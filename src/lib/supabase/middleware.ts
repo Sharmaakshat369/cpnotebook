@@ -27,22 +27,49 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // IMPORTANT: Avoid writing any logic between createServerClient and
-  // supabase.auth.getUser(). A simple mistake could make it very hard to debug
-  // issues with users being randomly logged out.
-
+  // IMPORTANT: Do not run any code between createServerClient and supabase.auth.getUser().
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith('/app')
-  ) {
-    // User is not logged in and is requesting a protected route
-    const url = request.nextUrl.clone();
-    url.pathname = '/auth/login';
-    return NextResponse.redirect(url);
+  const pathname = request.nextUrl.pathname;
+
+  const protectedRoutes = [
+    '/dashboard',
+    '/problems',
+    '/mistakes',
+    '/patterns',
+    '/concepts',
+    '/reviews',
+    '/settings',
+  ];
+
+  const isProtectedRoute = protectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+  const isAuthRoute = pathname.startsWith('/auth/login') || pathname.startsWith('/auth/signup');
+
+  // If unauthenticated user tries to access a protected route
+  if (!user && isProtectedRoute) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = '/auth/login';
+    redirectUrl.searchParams.set('next', pathname);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // If authenticated user visits login or signup
+  if (user && isAuthRoute) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = '/dashboard';
+    redirectUrl.searchParams.delete('next');
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // If root '/' is visited, redirect accordingly
+  if (pathname === '/') {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = user ? '/dashboard' : '/auth/login';
+    return NextResponse.redirect(redirectUrl);
   }
 
   return supabaseResponse;
